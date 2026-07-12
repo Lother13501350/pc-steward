@@ -1,0 +1,9 @@
+{
+  "name": "pc-steward",
+  "description": "AI PC health steward for Windows — evidence-based performance diagnosis with safe, reversible, user-approved fixes.",
+  "version": "0.1.0",
+  "author": {
+    "name": "pc-steward contributors"
+  },
+  "license": "MIT"
+}
