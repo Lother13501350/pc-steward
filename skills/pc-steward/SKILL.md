@@ -75,11 +75,24 @@ Report structure (write it in the user's language; lead with the verdict):
 建議的處理順序 / recommended fix order, by impact
 ```
 
-### Phase 3 — Get approval
+### Phase 3 — Get approval (checkbox menu)
 
-Present fixes as a menu and stop. Do not fix in the same turn as the report
-unless the user already explicitly asked for fixes. Approval is per-batch: "yes
-to startup cleanup" does not authorize anything else.
+Turn every fixable finding into a selectable option and let the user tick
+exactly what to fix — never a wall of text they must answer in prose. When the
+AskUserQuestion tool is available, use it with `multiSelect: true`: each
+option's label is one concrete fix ("Disable Steam autostart"), and its
+description states the expected impact and the undo path. Group related fixes
+into one question (e.g. all startup entries together); if a group has more
+than four candidates, lead with the highest-impact four and offer the rest in
+a follow-up question. Only whitelisted actions belong in the menu — findings
+that need manual work (service changes, uninstalls, hardware upgrades) go in a
+separate "manual suggestions" list, clearly marked as not automated.
+
+Without AskUserQuestion, print a numbered menu and wait for the user's picks.
+
+Do not fix in the same turn as the report unless the user already explicitly
+asked for fixes. Approval is exactly the ticked items: fix those, nothing more,
+and a selection today does not authorize the same fix tomorrow.
 
 ### Phase 4 — Fix (whitelisted actions only)
 
