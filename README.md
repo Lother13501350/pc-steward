@@ -24,20 +24,43 @@ Letting an AI touch your system settings requires trust. pc-steward earns it str
 
 ## Installation
 
-pc-steward v0.1 ships as a **Claude Code skill** (plugin).
+The core is agent-agnostic (PowerShell scripts + a plain-markdown operating
+manual), with thin adapters per agent host.
 
-**Option A — as a plugin (recommended):**
+### Claude Code
+
+**As a plugin (recommended):**
 
 ```
 /plugin marketplace add Lother13501350/pc-steward
 /plugin install pc-steward
 ```
 
-**Option B — manual skill install:**
+**Or manual skill install:** copy `skills/pc-steward/` into your
+`~/.claude/skills/` directory.
 
-Copy `skills/pc-steward/` into your `~/.claude/skills/` directory.
+### OpenAI Codex
 
-Requirements: Windows 10/11, Windows PowerShell 5.1+ (preinstalled), [Claude Code](https://claude.com/claude-code).
+```
+git clone https://github.com/Lother13501350/pc-steward
+cd pc-steward
+codex
+```
+
+Then just say *"my pc is slow"* — Codex picks up [AGENTS.md](AGENTS.md)
+automatically and follows the same workflow and safety rules.
+
+Optional global `/pc-steward` command: copy `adapters/codex/pc-steward.md`
+into `~/.codex/prompts/`, edit the `<REPO_PATH>` line inside it once, and
+invoke `/pc-steward` from any directory.
+
+### Other agent CLIs (Cursor, Gemini CLI, …)
+
+Any agent that reads `AGENTS.md` works the same way as Codex: clone the repo,
+start your agent inside it, and ask about your PC.
+
+Requirements: Windows 10/11 and Windows PowerShell 5.1+ (preinstalled). From
+WSL, agents can call `powershell.exe` directly.
 
 ## Usage
 

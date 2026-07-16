@@ -24,20 +24,36 @@
 
 ## 安裝
 
-pc-steward v0.1 以 **Claude Code skill**（plugin）形式發佈。
+核心是 agent 中立的（PowerShell 腳本＋純 Markdown 操作手冊），每個 AI 工具只需要一層薄薄的轉接器。
 
-**方式 A——以 plugin 安裝（建議）：**
+### Claude Code
+
+**以 plugin 安裝（建議）：**
 
 ```
 /plugin marketplace add Lother13501350/pc-steward
 /plugin install pc-steward
 ```
 
-**方式 B——手動安裝 skill：**
+**或手動安裝 skill：** 把 `skills/pc-steward/` 複製到 `~/.claude/skills/` 目錄。
 
-把 `skills/pc-steward/` 複製到 `~/.claude/skills/` 目錄。
+### OpenAI Codex
 
-需求：Windows 10/11、Windows PowerShell 5.1+（內建）、[Claude Code](https://claude.com/claude-code)。
+```
+git clone https://github.com/Lother13501350/pc-steward
+cd pc-steward
+codex
+```
+
+接著直接說「我的電腦好慢」——Codex 會自動讀取 [AGENTS.md](AGENTS.md)，遵循同一套工作流程與安全守則。
+
+想要全域 `/pc-steward` 指令的話：把 `adapters/codex/pc-steward.md` 複製到 `~/.codex/prompts/`，把檔案裡的 `<REPO_PATH>` 改成你 clone 的路徑（只需改一次），之後在任何目錄都能用 `/pc-steward` 呼叫。
+
+### 其他 agent CLI（Cursor、Gemini CLI⋯）
+
+任何會讀取 `AGENTS.md` 的 agent 都跟 Codex 一樣：clone 這個 repo、在裡面啟動你的 agent、然後開口問。
+
+需求：Windows 10/11、Windows PowerShell 5.1+（內建）。在 WSL 裡的 agent 可直接呼叫 `powershell.exe`。
 
 ## 使用方式
 
