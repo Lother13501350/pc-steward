@@ -2,3 +2,6 @@
 Thumbs.db
 Desktop.ini
 node_modules/
+
+# Local development and audit hygiene
+.DS_Store
